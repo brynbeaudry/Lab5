@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Lab5.Models;
+using System.Web.Http.Cors;
 
 namespace Lab5.Providers
 {
@@ -48,6 +49,7 @@ namespace Lab5.Providers
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

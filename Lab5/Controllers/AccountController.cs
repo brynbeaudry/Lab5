@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -16,11 +15,13 @@ using Microsoft.Owin.Security.OAuth;
 using Lab5.Models;
 using Lab5.Providers;
 using Lab5.Results;
+using System.Web.Http.Cors;
 
 namespace Lab5.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/Account")]
+    [EnableCors("*","*","*")]
+    [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
